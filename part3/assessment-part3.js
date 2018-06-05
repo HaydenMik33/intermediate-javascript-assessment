@@ -51,7 +51,7 @@ function applyBinding(magicAnimals, updateAnimal, id) {
 
 var foo;
 const promiseMe = $q => {
-  return $q(resolve => {
+  return new Promise(resolve => {
     setTimeout(function() {
       foo = "bar";
       resolve(foo);

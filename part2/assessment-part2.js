@@ -182,17 +182,17 @@ function frodo(startingHungerValue, startingDangerValue) {
   let danger = startingDangerValue;
   return {
     dinnerOverFire: function() {
-      (hunger -= 25),
-        (danger += 40)(
-          hunger < 0 ? (hunger = 0) : hunger > 100 ? (hunger = 100) : true
-        )(danger < 0 ? (danger = 0) : danger > 100 ? (danger = 100) : true);
+      hunger -= 25;
+      danger += 40;
+      hunger < 0 ? (hunger = 0) : hunger > 100 ? (hunger = 100) : hunger;
+      danger < 0 ? (danger = 0) : danger > 100 ? (danger = 100) : danger;
       return { hunger: hunger, danger: danger };
     },
     hidingInBush: function() {
-      (hunger += 35),
-        (danger -= 20)(
-          hunger < 0 ? (hunger = 0) : hunger > 100 ? (hunger = 100) : true
-        )(danger < 0 ? (danger = 0) : danger > 100 ? (danger = 100) : true);
+      hunger += 35;
+      danger -= 20;
+      hunger < 0 ? (hunger = 0) : hunger > 100 ? (hunger = 100) : hunger;
+      danger < 0 ? (danger = 0) : danger > 100 ? (danger = 100) : danger;
       return { hunger: hunger, danger: danger };
     }
   };
