@@ -11,10 +11,10 @@
 // Find the animal that matches the given id, then call the update function
 // with the animal as the context, and 'Trogdor' as a parameter.
 // return the result of your updateAnimal invocation
-
-// CODE HERE...
-
-
+const callBinding = (magicAnimals, updateAnimal, id) => {
+  let animal = magicAnimals.filter(el => el.id === id);
+  return updateAnimal.call(animal, "Trogdor");
+};
 
 // *************
 // * PROBLEM 2 *
@@ -26,11 +26,15 @@
 // Find the animal that matches the given id, then call the function
 // with the context of the animal, and the array ['being majestic', 'eating rainbows'] as a parameter.
 // return the result of your updateAnimal invocation
-
-// CODE HERE...
-
-
-
+function applyBinding(magicAnimals, updateAnimal, id) {
+  console.log(magicAnimals);
+  let animal = magicAnimals.filter(el => {
+    if (el.id === id) {
+      return el;
+    }
+  });
+  return updateAnimal.apply(animal[0], ["being majestic", "eating rainbows"]);
+}
 // *************
 // * PROBLEM 3 *
 // *************
@@ -46,10 +50,16 @@
 // NOTE: Manually invoking your function here will alter the 'foo' variable before tests run, causing them to fail.
 
 var foo;
+const promiseMe = $q => {
+  return $q(resolve => {
+    setTimeout(function() {
+      foo = "bar";
+      resolve(foo);
+    }, 20);
+  });
+};
 
 // CODE HERE...
-
-
 
 // *************
 // * PROBLEM 4 *
@@ -63,4 +73,14 @@ var foo;
 // Make an array of emails (array of strings) from the returned data (You will need to console log or debug to figure this out),
 // and then resolve the array as you complete your promise.
 
-// CODE HERE...
+function emailList($q, $http) {
+  // $q.then(res => console.log(res));
+  return $http.get("/api/users").then(res => {
+    console.log(res);
+    newArr = res.data.map(el => {
+      return el.email;
+    });
+    console.log(newArr);
+    return newArr;
+  });
+}
